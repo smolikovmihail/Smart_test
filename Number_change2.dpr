@@ -1,8 +1,5 @@
 program Number_change2;
 
-// Меняем байты местами. Теперь честный, свой способ.
-// В массиве - 1 и 0, соответствующие битам числа.
-
 {$APPTYPE CONSOLE}
 
 {$R *.res}
@@ -18,12 +15,9 @@ begin
    Write('Enter number: ');
    Readln(num);
 
-   max := 65535;
-   multArray[0] := num div max;
-   num := num - multArray[0] * max;
    max := 32768;
-   for i := 1 to 16 do
-   begin
+   for i := 0 to 15 do             // РїРµСЂРµРІРѕРґРёРј РІ РґРІРѕРёС‡РЅСѓСЋ СЃРёСЃС‚РµРјСѓ СЃС‡РёСЃР»РµРЅРёСЏ
+   begin                           // РІРІРµРґС‘РЅРЅРѕРµ С‡РёСЃР»Рѕ
       multArray[i] := num div max;
       num := num - multArray[i] * max;
       max := max div 2;
@@ -33,7 +27,7 @@ begin
    changed_num := 0;
    mult := 128;
 
-   for j := 0 to 7 do     //это был старший байт, стал младшим
+   for j := 0 to 7 do     //СЌС‚Рѕ Р±С‹Р» СЃС‚Р°СЂС€РёР№ Р±Р°Р№С‚, СЃС‚Р°Р» РјР»Р°РґС€РёРј
    begin
       Write (multArray[j]);
       Write ('  *  ');
@@ -43,7 +37,7 @@ begin
    end;
 
    mult := 32768;
-   for k := 9 to 16 do     //это был младший байт, стал старшим
+   for k := 8 to 15 do     //СЌС‚Рѕ Р±С‹Р» РјР»Р°РґС€РёР№ Р±Р°Р№С‚, СЃС‚Р°Р» СЃС‚Р°СЂС€РёРј
    begin
       Write (multArray[k]);
       Write ('  *  ');
